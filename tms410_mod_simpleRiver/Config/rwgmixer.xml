@@ -1,0 +1,88 @@
+<!--
+val_0
+val_p1
+val_m1
+val_baseInv
+val_wtr
+val_rivBtm
+val_ocnBtm
+val_mntHeight
+-->
+<configs>
+<append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
+	<module name="wtr01_ctrlBone" type="FastNoise" seed_additive="0">
+		<property name="frequency" value="0.001"/>
+		<property name="lacunarity" value="1.7"/>
+		<property name="octaveCount" value="6"/>
+	</module>
+	<module name="wtr01_ctrlDisableLostMagic" type="ScaleInput">
+		<property name="sourceModule" value="wtr01_ctrlBone"/>
+		<property name="y" value="0"/>
+	</module>
+	<module name="wtr01_ctrlShaked" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="wtr01_ctrlDisableLostMagic"/>
+		<property name="frequency" value="0.005"/>
+		<property name="power" value="100"/>
+		<property name="roughness" value="5"/>
+	</module>
+	<module name="wtr01_ctrl" type="AbsoluteOutput">
+		<property name="sourceModule" value="wtr01_ctrlShaked"/>
+	</module>
+	<module name="wtr01_ctrlSide" type="FastTurbulence" seed_additive="2">
+		<property name="sourceModule" value="wtr01_ctrl"/>
+		<property name="frequency" value="0.25"/>
+		<property name="power" value="0.5"/>
+		<property name="roughness" value="2"/>
+	</module>
+
+	<module name="ftr_nerfed" type="Select">
+		<property name="controlModule" value="wtr01_ctrlSide"/>
+		<property name="sourceModule1" value="ftr_nerfed"/>
+		<property name="sourceModule2" value="val_0"/>
+		<property name="bounds" value="-100,0.25"/>
+		<property name="edgeFalloff" value="0.1"/>
+	</module>
+	<module name="pln_nerfed" type="Select">
+		<property name="controlModule" value="wtr01_ctrlSide"/>
+		<property name="sourceModule1" value="pln_nerfed"/>
+		<property name="sourceModule2" value="val_0"/>
+		<property name="bounds" value="-100,0.25"/>
+		<property name="edgeFalloff" value="0.1"/>
+	</module>
+
+	<module name="ctn_nerfer" type="Select">
+		<property name="controlModule" value="wtr01_ctrlSide"/>
+		<property name="sourceModule1" value="wtr_modifierOutput"/>
+		<property name="sourceModule2" value="val_plnCtr"/>
+		<property name="bounds" value="-100,0.25"/>
+		<property name="edgeFalloff" value="0.1"/>
+	</module>
+	<module name="ctn_nerfed" type="SmallerOutput">
+		<property name="sourceModule1" value="wtr_modifierOutput"/>
+		<property name="sourceModule2" value="ctn_nerfer"/>
+	</module>
+	<module name="ctn_wtrSideNerfer" type="Select">
+		<property name="controlModule" value="wtr01_ctrlSide"/>
+		<property name="sourceModule1" value="ctn_nerfed"/>
+		<property name="sourceModule2" value="val_rivSide"/>
+		<property name="bounds" value="-100,0.1"/>
+		<property name="edgeFalloff" value="0.05"/>
+	</module>
+	<module name="ctn_wtrSide" type="SmallerOutput">
+		<property name="sourceModule1" value="ctn_wtrSideNerfer"/>
+		<property name="sourceModule2" value="ctn_nerfed"/>
+	</module>
+	<module name="ctn_wtr" type="Select">
+		<property name="controlModule" value="wtr01_ctrlSide"/>
+		<property name="sourceModule1" value="ctn_wtrSide"/>
+		<property name="sourceModule2" value="val_rivBtm"/>
+		<property name="bounds" value="-100,0.02"/>
+		<property name="edgeFalloff" value="0.02"/>
+	</module>
+	<module name="wtr_modifierOutput" type="SmallerOutput">
+		<property name="sourceModule1" value="ctn_wtr"/>
+		<property name="sourceModule2" value="ctn_wtrSide"/>
+	</module>
+
+</append>
+</configs>

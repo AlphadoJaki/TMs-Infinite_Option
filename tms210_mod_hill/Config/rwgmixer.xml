@@ -1,0 +1,49 @@
+<!--
+val_0
+val_p1
+val_m1
+val_baseInv
+val_wtr
+val_rivBtm
+val_ocnBtm
+val_mntHeight
+-->
+<configs>
+<append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
+	<!-- pln01_ -->
+	<module name="pln01_base" type="FastNoise" seed_additive="0">
+		<property name="frequency" value="0.04"/>
+		<property name="lacunarity" value="1.6"/>
+		<property name="octaveCount" value="10"/>
+	</module>
+	<module name="pln01_inter" type="ScaleBiasOutput">
+		<property name="sourceModule" value="pln01_base"/>
+		<property name="scale" value="40"/>
+		<property name="bias" value="18"/>
+	</module>
+	<module name="pln01_terrace" type="Terrace">
+		<property name="sourceModule" value="pln01_inter"/>
+	<!--<property name="controlPoints" value="2.0, 23.0, 44.0, 65.0, 86.0, 107.0"/>-->
+		<!-- 2 or more controlPoints -->
+	</module>
+	<module name="pln01_frequency" type="ScaleInput">
+		<property name="sourceModule" value="pln01_terrace"/>
+		<property name="x" value="1"/>
+		<property name="z" value="1"/>
+		<property name="y" value="0"/>
+	</module>
+	<module name="pln01_reinter" type="BiasOutput">
+		<property name="sourceModule" value="pln01_frequency"/>
+		<property name="bias" value="-2"/>
+	</module>
+	<module name="pln01_scale" type="ScaleOutput">
+		<property name="sourceModule" value="pln01_reinter"/>
+		<property name="scale" value="1"/>
+	</module>
+	<module name="pln_modifierOutput" type="ScaleOutput">
+		<property name="sourceModule" value="pln01_scale"/>
+		<property name="scale" value="0.0018"/>
+	</module>
+
+</append>
+</configs>

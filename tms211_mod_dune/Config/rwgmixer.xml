@@ -1,0 +1,51 @@
+<!--
+val_0
+val_p1
+val_m1
+val_baseInv
+val_wtr
+val_rivBtm
+val_ocnBtm
+val_mntHeight
+-->
+<configs>
+<append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
+	<!-- pln02_ -->
+	<module name="pln02_bone" type="Voronoi" seed_additive="0">
+		<property name="frequency" value="0.012"/>
+		<property name="displacement" value="0"/>
+		<property name="distanceEnabled" value="true"/>
+	</module>
+	<module name="pln02_dune" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="pln02_bone"/>
+		<property name="frequency" value="0.006"/>
+		<property name="power" value="30"/>
+		<property name="roughness" value="3"/>
+	</module>
+	<module name="pln02_duneReg" type="ScaleBiasOutput">
+		<property name="sourceModule" value="pln02_dune"/>
+		<property name="scale" value="1.3"/>
+		<property name="bias" value="0.2"/>
+	</module>
+	<module name="pln02_duneSmooth" type="ExponentialOutput">
+		<property name="sourceModule" value="pln02_duneReg"/>
+		<property name="exponent" value="1.2"/>
+	</module>
+	<module name="pln02_frequency" type="ScaleInput">
+	<property name="sourceModule" value="pln02_duneSmooth"/>
+	<property name="x" value="1"/>
+	<property name="z" value="1"/>
+	<property name="y" value="0"/>
+	</module>
+	<module name="pln02_scale" type="ScaleOutput">
+		<property name="sourceModule" value="pln02_frequency"/>
+		<property name="scale" value="1"/>
+	</module>
+	<module name="pln_modifierOutput" type="ScaleBiasOutput">
+		<property name="sourceModule" value="pln02_scale"/>
+		<property name="scale" value="15"/>
+		<property name="bias" value="15"/>
+	</module>
+
+</append>
+</configs>

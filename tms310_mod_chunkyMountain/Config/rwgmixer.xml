@@ -1,0 +1,126 @@
+<!--
+val_0
+val_p1
+val_m1
+val_baseInv
+val_wtr
+val_rivBtm
+val_ocnBtm
+val_mntHeight
+-->
+<configs>
+<append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
+	<!-- ftr01_ -->
+	<module name="ftr01_bone" type="RidgedMultifractal" seed_additive="0">
+		<property name="frequency" value="0.0006"/>
+		<property name="octaveCount" value="1"/>
+	</module>
+	<module name="ftr01_frequency" type="ScaleInput">
+		<property name="sourceModule" value="ftr01_bone"/>
+		<property name="x" value="1"/>
+		<property name="z" value="1"/>
+		<property name="y" value="0"/>
+	</module>
+	<module name="ftr01_boneDetail" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="ftr01_frequency"/>
+		<property name="frequency" value="0.003"/>
+		<property name="power" value="80"/>
+		<property name="roughness" value="4"/>
+	</module>
+	<module name="ftr01_boneReg" type="ScaleBiasOutput">
+		<property name="sourceModule" value="ftr01_boneDetail"/>
+		<property name="scale" value="1.95"/>
+		<property name="bias" value="0.6"/>
+	</module>
+	<module name="ftr01_boneClamp" type="ClampOutput">
+		<property name="sourceModule" value="ftr01_boneReg"/>
+		<property name="bounds" value="-1,1"/>
+	</module>
+	<module name="ftr01_boneSharpen" type="ExponentialOutput">
+		<property name="sourceModule" value="ftr01_boneClamp"/>
+		<property name="exponent" value="0.45"/>
+	</module>
+	<module name="ftr01_boneOutPos" type="ScaleBiasOutput">
+		<property name="sourceModule" value="ftr01_boneSharpen"/>
+		<property name="scale" value="5"/>
+		<property name="bias" value="-4"/>
+	</module>
+	<module name="ftr01_boneCutOff" type="ClampOutput">
+		<property name="sourceModule" value="ftr01_boneOutPos"/>
+		<property name="bounds" value="-1,1"/>
+	</module>
+	<module name="ftr01_boneFinal" type="ExponentialOutput">
+		<property name="sourceModule" value="ftr01_boneCutOff"/>
+		<property name="exponent" value="1.4"/>
+	</module>
+	<module name="ftr01_fractal" type="RidgedMultifractal" seed_additive="2">
+		<property name="frequency" value="0.002"/>
+		<property name="octaveCount" value="1"/>
+	</module>
+	<module name="ftr01_fractalScaled" type="ScaleBiasOutput">
+		<property name="sourceModule" value="ftr01_fractal"/>
+		<property name="scale" value="0.6"/>
+		<property name="bias" value="0.3"/>
+	</module>
+	<module name="ftr01_fractalBlender" type="Select">
+		<property name="sourceModule1" value="val_0"/>
+		<property name="sourceModule2" value="ftr01_fractalScaled"/>
+		<property name="controlModule" value="ftr01_boneFinal"/>
+		<property name="bounds" value="-0.5, 0.6"/>
+		<property name="edgeFalloff" value="0.4"/>
+	</module>
+	<module name="ftr01_bonePlusFractal" type="Add">
+		<property name="sourceModule1" value="ftr01_boneFinal"/>
+		<property name="sourceModule2" value="ftr01_fractalBlender"/>
+	</module>
+	<module name="ftr01_ridge" type="Billow" seed_additive="3">
+		<property name="frequency" value="0.0020"/>
+	</module>
+	<module name="ftr01_ridgeScaled" type="ScaleBiasOutput">
+		<property name="sourceModule" value="ftr01_ridge"/>
+		<property name="scale" value="1.3"/>
+		<property name="bias" value="-1.0"/>
+	</module>
+	<module name="ftr01_ridgeClamped" type="ClampOutput">
+		<property name="sourceModule" value="ftr01_ridgeScaled"/>
+		<property name="bounds" value="-1,10000"/>
+	</module>
+	<module name="ftr01_ridgeFinal" type="ExponentialOutput">
+		<property name="sourceModule" value="ftr01_ridgeClamped"/>
+		<property name="exponent" value="1.3"/>
+	</module>
+	<module name="ftr01_mountain" type="Blend">
+		<property name="controlModule" value="ftr01_bonePlusFractal"/>
+		<property name="sourceModule1" value="val_m1"/>
+		<property name="sourceModule2" value="ftr01_ridgeFinal"/>
+	</module>
+	<module name="ftr01_mountainScaled" type="ScaleBiasOutput">
+		<property name="sourceModule" value="ftr01_mountain"/>
+		<property name="scale" value="0.5"/>
+		<property name="bias" value="0.5"/>
+	</module>
+	<module name="ftr01_mountainDone" type="Multiply">
+		<property name="sourceModule1" value="ftr01_mountainScaled"/>
+		<property name="sourceModule2" value="val_mntHeight"/>
+	</module>
+	<module name="ftr01_scale" type="ScaleOutput">
+		<property name="sourceModule" value="ftr01_mountainDone"/>
+		<property name="scale" value="1"/>
+	</module>
+	<module name="ftr_modifierOutput" type="Multiply">
+		<property name="sourceModule1" value="ftr01_scale"/>
+		<property name="sourceModule2" value="ftr_ctrl"/>
+	</module>
+
+	<module name="ftr01_ctrlAdder" type="ScaleBiasOutput">
+		<property name="sourceModule" value="ftr01_bonePlusFractal"/>
+		<property name="scale" value="-0.5"/>
+		<property name="bias" value="-0.5"/>
+	</module>
+	<module name="ftr_ctrl" type="Add">
+		<property name="sourceModule1" value="ftr_ctrl"/>
+		<property name="sourceModule2" value="ftr01_ctrlAdder"/>
+	</module>
+
+</append>
+</configs>
