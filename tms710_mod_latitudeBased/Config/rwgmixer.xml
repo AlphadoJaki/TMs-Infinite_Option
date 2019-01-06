@@ -1,0 +1,115 @@
+<!--
+val_0
+val_p1
+val_m1
+val_baseInv
+val_wtr
+val_rivBtm
+val_ocnBtm
+val_mntHeight
+
+320~worldsize-320
+-->
+<configs>
+<append xpath="/*/biome_generators/*[@name='vanillaSmall']|/*/trash">
+		<module name="val_desert_perc" type="ScaleOutput">
+			<property name="sourceModule" value="val_worldSafeSize"/>
+			<property name="scale" value="0.25"/>
+		</module>
+		<module name="val_NO_snow_perc" type="ScaleOutput">
+			<property name="sourceModule" value="val_worldSafeSize"/>
+			<property name="scale" value="0.75"/>
+		</module>
+
+		<module name="bio_posLowerInv" type="Add">
+			<property name="sourceModule1" value="val_worldSafeLower"/>
+			<property name="sourceModule2" value="val_desert_perc"/>
+		</module>
+		<module name="bio_posLower" type="InvertOutput">
+			<property name="sourceModule" value="bio_posLowerInv"/>
+		</module>
+		<module name="bio_posUpperInv" type="Add">
+			<property name="sourceModule1" value="val_worldSafeLower"/>
+			<property name="sourceModule2" value="val_NO_snow_perc"/>
+		</module>
+		<module name="bio_posUpper" type="InvertOutput">
+			<property name="sourceModule" value="bio_posUpperInv"/>
+		</module>
+
+		<module name="isPositive_z" type="ScaleBiasOutput">
+			<property name="sourceModule" value="sgn_z"/>
+			<property name="scale" value="0.5"/>
+			<property name="bias" value="0.5"/>
+		</module>
+		<module name="isPositive_z_waved" type="FastTurbulence">
+			<property name="sourceModule" value="isPositive_z"/>
+			<property name="frequency" value="0.0017"/>
+			<property name="power" value="600"/>
+			<property name="roughness" value="5"/>
+		</module>
+
+		<module name="bio_gapLower" type="ScaleOutput">
+			<property name="sourceModule" value="isPositive_z_waved"/>
+			<property name="scale" value="3"/>
+		</module>
+		<module name="bio_gapUpper" type="ScaleOutput">
+			<property name="sourceModule" value="isPositive_z_waved"/>
+			<property name="scale" value="3"/>
+		</module>
+
+
+		<module name="bio_bandLower" type="DisplaceInput">
+			<property name="sourceModule" value="bio_gapLower"/>
+			<property name="xDisplaceModule" value="val_0"/>
+			<property name="yDisplaceModule" value="val_0"/>
+			<property name="zDisplaceModule" value="bio_posLower"/>
+		</module>
+		<module name="bio_bandUpper" type="DisplaceInput">
+			<property name="sourceModule" value="bio_gapUpper"/>
+			<property name="xDisplaceModule" value="val_0"/>
+			<property name="yDisplaceModule" value="val_0"/>
+			<property name="zDisplaceModule" value="bio_posUpper"/>
+		</module>
+		<module name="bio_band" type="Add">
+			<property name="sourceModule1" value="bio_bandLower"/>
+			<property name="sourceModule2" value="bio_bandUpper"/>
+		</module>
+
+		<module name="bio_waster" type="FastNoise">
+			<property name="frequency" value="0.0028"/>
+			<property name="lacunarity" value="1.8"/>
+		</module>
+		<module name="bio_wastePerc" type="ScaleOutput">
+			<property name="sourceModule" value="bio_waster"/>
+			<property name="scale" value="0.65"/>
+		</module>
+		<module name="bio_out" type="Add">
+			<property name="sourceModule1" value="bio_band"/>
+			<property name="sourceModule2" value="bio_wastePerc"/>
+		</module>
+
+		<module name="biomeOutput" type="BiomeIDMapper">
+			<property name="sourceModule" value="bio_out"/>
+			<property name="biomemap0.Name" value="desert"/>
+			<property name="biomemap0.Range" value="-0.5,0.5"/>
+			<property name="biomemap1.Name" value="pine_forest"/>
+			<property name="biomemap1.Range" value="2.5,3.5"/>
+			<property name="biomemap2.Name" value="snow"/>
+			<property name="biomemap2.Range" value="5.5,6.5"/>
+			<property name="biomemap3.Name" value="burnt_forest"/>
+			<property name="biomemap3.Range" value="1.5,6"/>
+			<property name="biomemap4.Name" value="wasteland"/>
+			<property name="biomemap4.Range" value="-5,10"/>
+		</module>
+
+<!--  Biome Mapping (Smaller number wins larger number)
+
+-5  -0.5     0.5 1.5 2.5           3.5  5.5  6   6.5       10
+     |-desert-|       |-pine_forest-|    |- snow -|
+|-   wasteland   -|-    burnt_forest        -|- wasteland -|
+
+-->
+
+		<output module="biomeOutput"/>
+</append>
+</configs>
