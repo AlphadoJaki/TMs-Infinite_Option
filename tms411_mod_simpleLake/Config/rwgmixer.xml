@@ -1,0 +1,154 @@
+<!--
+val_0
+val_p1
+val_m1
+val_worldSize
+val_worldSizeRecip
+val_worldSizeHalf
+val_worldSizeHalfRecip
+val_worldSafeSize
+val_worldSafeSizeRecip
+val_worldSafeSizeHalf
+val_worldSafeSizeHalfRecip
+val_worldSafeLower
+val_worldSafeUpper
+dist_southWestBase
+dist_southWest
+x
+z
+dist_center
+checker
+sgn_x
+sgn_z
+val_baseCfg
+val_baseInv
+val_wtrCfg
+val_wtrAdder
+val_rivBtm
+val_ocnBtm
+val_mntHeightCfg
+val_mntHeightBase
+val_plnBtm
+val_plnCtr
+val_plnRof
+val_rivSide
+val_canyonBtm
+ftr_ctrl
+-->
+<configs>
+<append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
+	<module name="wtr02_lakeBone" type="FastNoise" seed_additive="0">
+		<property name="frequency" value="0.013"/>
+		<property name="lacunarity" value="1.8"/>
+		<property name="octaveCount" value="6"/>
+	</module>
+	<module name="wtr02_lakeJag" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="wtr02_lakeBone"/>
+		<property name="frequency" value="0.019"/>
+		<property name="power" value="20"/>
+		<property name="roughness" value="2"/>
+	</module>
+	<module name="wtr02_lakeDetail" type="FastTurbulence" seed_additive="2">
+		<property name="sourceModule" value="wtr02_lakeJag"/>
+		<property name="frequency" value="0.005"/>
+		<property name="power" value="48"/>
+		<property name="roughness" value="3"/>
+	</module>
+	<module name="wtr02_lake" type="ScaleBiasOutput">
+		<property name="sourceModule" value="wtr02_lakeDetail"/>
+		<property name="scale" value="0.25"/>
+		<property name="bias" value="0"/>
+	</module>
+	<module name="wtr02_pondBone" type="FastNoise" seed_additive="3">
+		<property name="frequency" value="0.021"/>
+		<property name="lacunarity" value="2.0"/>
+		<property name="octaveCount" value="6"/>
+	</module>
+	<module name="wtr02_pondAbrupt" type="FastTurbulence" seed_additive="4">
+		<property name="sourceModule" value="wtr02_pondBone"/>
+		<property name="frequency" value="0.002"/>
+		<property name="power" value="48"/>
+		<property name="roughness" value="2"/>
+	</module>
+	<module name="wtr02_pondSmooth" type="ExponentialOutput">
+		<property name="sourceModule" value="wtr02_pondAbrupt"/>
+		<property name="exponent" value="0.6"/>
+	</module>
+	<module name="wtr02_pond" type="ScaleBiasOutput">
+		<property name="sourceModule" value="wtr02_pondSmooth"/>
+		<property name="scale" value="0.15"/>
+		<property name="bias" value="-0.3"/>
+	</module>
+	<module name="wtr02_lakePond" type="Select">
+		<property name="controlModule" value="wtr02_lake"/>
+		<property name="sourceModule1" value="wtr02_pond"/>
+		<property name="sourceModule2" value="wtr02_lake"/>
+		<property name="bounds" value="0,1000"/>
+		<property name="edgeFalloff" value="0.5"/>
+	</module>
+	<module name="wtr02_ctrlNerferBone" type="FastNoise" seed_additive="5">
+		<property name="frequency" value="0.006"/>
+		<property name="lacunarity" value="1.6"/>
+		<property name="octaveCount" value="6"/>
+	</module>
+	<module name="wtr02_ctrlNerfer" type="ScaleBiasOutput">
+		<property name="sourceModule" value="wtr02_ctrlNerferBone"/>
+		<property name="scale" value="0.55"/>
+		<property name="bias" value="0.75"/>
+	</module>
+	<module name="wtr02_ctrl" type="Add">
+		<property name="sourceModule1" value="wtr02_lakePond"/>
+		<property name="sourceModule2" value="wtr02_ctrlNerfer"/>
+	</module>
+
+	<module name="ftr_nerfed" type="Select">
+		<property name="controlModule" value="wtr02_ctrl"/>
+		<property name="sourceModule1" value="ftr_nerfed"/>
+		<property name="sourceModule2" value="val_0"/>
+		<property name="bounds" value="-100,0.36"/>
+		<property name="edgeFalloff" value="0.16"/>
+	</module>
+	<module name="pln_nerfed" type="Select">
+		<property name="controlModule" value="wtr02_ctrl"/>
+		<property name="sourceModule1" value="pln_nerfed"/>
+		<property name="sourceModule2" value="val_0"/>
+		<property name="bounds" value="-100,0.36"/>
+		<property name="edgeFalloff" value="0.16"/>
+	</module>
+
+	<module name="ctn_nerfer" type="Select">
+		<property name="controlModule" value="wtr02_ctrl"/>
+		<property name="sourceModule1" value="wtr_modifierOutput"/>
+		<property name="sourceModule2" value="val_plnBtm"/>
+		<property name="bounds" value="-100,0.27"/>
+		<property name="edgeFalloff" value="0.18"/>
+	</module>
+	<module name="ctn_nerfed" type="SmallerOutput">
+		<property name="sourceModule1" value="wtr_modifierOutput"/>
+		<property name="sourceModule2" value="ctn_nerfer"/>
+	</module>
+	<module name="ctn_wtrSideNerfer" type="Select">
+		<property name="controlModule" value="wtr02_ctrl"/>
+		<property name="sourceModule1" value="ctn_nerfed"/>
+		<property name="sourceModule2" value="val_rivSide"/>
+		<property name="bounds" value="-100,0.1"/>
+		<property name="edgeFalloff" value="0.05"/>
+	</module>
+	<module name="ctn_wtrSide" type="SmallerOutput">
+		<property name="sourceModule1" value="ctn_wtrSideNerfer"/>
+		<property name="sourceModule2" value="ctn_nerfed"/>
+	</module>
+	<module name="ctn_wtr" type="Select">
+		<property name="controlModule" value="wtr02_ctrl"/>
+		<property name="sourceModule1" value="ctn_wtrSide"/>
+		<property name="sourceModule2" value="val_rivBtm"/>
+		<property name="bounds" value="-100,0.02"/>
+		<property name="edgeFalloff" value="0.02"/>
+	</module>
+	<module name="wtr_modifierOutput" type="SmallerOutput">
+		<property name="sourceModule1" value="ctn_wtr"/>
+		<property name="sourceModule2" value="ctn_wtrSide"/>
+	</module>
+
+</append>
+</configs>
