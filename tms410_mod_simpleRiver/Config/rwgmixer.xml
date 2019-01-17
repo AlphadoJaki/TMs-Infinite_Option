@@ -53,7 +53,7 @@ val_mntHeight
 	<module name="ctn_nerfer" type="Select">
 		<property name="controlModule" value="wtr01_ctrlSide"/>
 		<property name="sourceModule1" value="wtr_modifierOutput"/>
-		<property name="sourceModule2" value="val_plnCtr"/>
+		<property name="sourceModule2" value="val_plnBtm"/>
 		<property name="bounds" value="-100,0.25"/>
 		<property name="edgeFalloff" value="0.1"/>
 	</module>
