@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xml>
 	<ModInfo>
-		<Name value="TMs Continent modifier 01 : Mixed continent" />
-		<Description value="Generate continent as best variation. Think as HEAD. Frequently change." />
+		<Name value="TMs Continent modifier 01 : Terrace continent" />
+		<Description value="Generate continent as terrace" />
 		<Author value="Alphado-Jaki" />
 		<Version value="1.0.0" />
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
@@ -11,8 +11,8 @@
 <!--
 <xml>
 	<ModInfo>
-		<Name value="地形MOD集 平野mod01 : 混ぜこぜ" />
-		<Description value="最も多様性に富んだ平野を生成します。テーマのある部品というよりは、開発中の一番いい物を入れていると思ってください。内容は頻繁に変わります。" />
+		<Name value="地形MOD集 平野mod01 : 段地" />
+		<Description value="平野を段地として生成します。" />
 		<Author value="Alphado-Jaki" />
 		<Version value="1.0.0" />
 	<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
