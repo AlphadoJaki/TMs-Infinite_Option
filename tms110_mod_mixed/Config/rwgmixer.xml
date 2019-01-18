@@ -11,20 +11,20 @@ val_mntHeight
 <configs>
 <append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
 	<!-- ctn01_ -->
-	<module name="cnt01_base" type="FastNoise" seed_additive="0">
+	<module name="ctn01_base" type="FastNoise" seed_additive="0">
 		<property name="frequency" value="0.001"/>
 			<property name="lacunarity" value="1.5"/>
 		<property name="octaveCount" value="5"/>
 	</module>
 	<module name="ctn01_lowArea" type="Select">
-		<property name="controlModule" value="cnt01_base"/>
+		<property name="controlModule" value="ctn01_base"/>
 		<property name="sourceModule1" value="val_plnBtm"/>
 		<property name="sourceModule2" value="val_plnCtr"/>
 		<property name="bounds" value="-0.1, 1000"/>
 		<property name="edgeFalloff" value="0.2"/>
 	</module>
 	<module name="ctn01_highArea" type="Select">
-		<property name="controlModule" value="cnt01_base"/>
+		<property name="controlModule" value="ctn01_base"/>
 		<property name="sourceModule1" value="ctn01_lowArea"/>
 		<property name="sourceModule2" value="val_plnRof"/>
 		<property name="bounds" value="0.4, 1000"/>
