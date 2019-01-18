@@ -8,3 +8,14 @@
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
 	</ModInfo>
 </xml>
+<!--
+<xml>
+	<ModInfo>
+		<Name value="地形MOD集 バイオームmod01 : 等緯度線" />
+		<Description value="*注意* バイオームmodは1つのみ使用できます。ワールドサイズはtms000Xcfg_0_basicSetupsで設定。緯度に基づいて帯状のバイオーム生成をします。南に砂漠、北に雪原、間は森林が生成されます。" />
+		<Author value="Alphado-Jaki" />
+		<Version value="1.0.0" />
+		<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
+	</ModInfo>
+</xml>
+-->

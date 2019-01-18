@@ -8,3 +8,14 @@
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
 	</ModInfo>
 </xml>
+<!--
+<xml>
+	<ModInfo>
+		<Name value="地形MOD集 水場mod01拡張 X :川の分断" />
+		<Description value="前提MOD *水場mod01* 道・街が川を越えて生成できるように、土を盛って川を分断します。" />
+		<Author value="Alphado-Jaki" />
+		<Version value="1.0.0" />
+		<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
+	</ModInfo>
+</xml>
+-->

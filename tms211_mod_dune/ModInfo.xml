@@ -8,3 +8,14 @@
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
 	</ModInfo>
 </xml>
+<!--
+<xml>
+	<ModInfo>
+		<Name value="地形MOD集 丘mod02 : 砂丘" />
+		<Description value="丘を砂丘として生成します。砂漠で映えます。" />
+		<Author value="Alphado-Jaki" />
+		<Version value="1.0.0" />
+		<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
+	</ModInfo>
+</xml>
+-->
