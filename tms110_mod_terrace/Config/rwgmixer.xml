@@ -19,16 +19,16 @@ val_mntHeight
 	<module name="ctn01_lowArea" type="Select">
 		<property name="controlModule" value="ctn01_base"/>
 		<property name="sourceModule1" value="val_plnBtm"/>
-		<property name="sourceModule2" value="val_plnCtr"/>
-		<property name="bounds" value="-0.6, 1000"/>
-		<property name="edgeFalloff" value="0.25"/>
+		<property name="sourceModule2" value="val_plnLow"/>
+		<property name="bounds" value="-0.8, 1000"/>
+		<property name="edgeFalloff" value="0.06"/>
 	</module>
 	<module name="ctn01_highArea" type="Select">
 		<property name="controlModule" value="ctn01_base"/>
 		<property name="sourceModule1" value="ctn01_lowArea"/>
 		<property name="sourceModule2" value="val_plnRof"/>
-		<property name="bounds" value="0.6, 1000"/>
-		<property name="edgeFalloff" value="0.25"/>
+		<property name="bounds" value="0.5, 1000"/>
+		<property name="edgeFalloff" value="0.15"/>
 	</module>
 	<module name="ctn01_scale" type="ScaleOutput">
 		<property name="sourceModule" value="ctn01_highArea"/>
