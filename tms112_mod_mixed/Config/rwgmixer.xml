@@ -1,0 +1,145 @@
+<!--
+val_0
+val_p1
+val_m1
+val_worldSize
+val_worldSizeRecip
+val_worldSizeHalf
+val_worldSizeHalfRecip
+val_worldSafeSize
+val_worldSafeSizeRecip
+val_worldSafeSizeHalf
+val_worldSafeSizeHalfRecip
+val_worldSafeLower
+val_worldSafeUpper
+dist_southWestBase
+dist_southWest
+x
+z
+dist_center
+checker
+sgn_x
+sgn_z
+val_baseCfg
+val_baseInv
+val_wtrCfg
+val_wtrAdder
+val_rivBtm
+val_ocnBtm
+val_mntHeightCfg
+val_mntHeightBase
+val_plnBtm
+val_plnLow
+val_plnCtr
+val_plnHig
+val_plnRof
+val_rivSide
+val_canyonBtm
+ftr_ctrl
+-->
+<configs>
+<append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
+	<!-- ctn03_ -->
+	<module name="ctn03_heightCtrlBone" type="FastNoise" seed_additive="0">
+		<property name="frequency" value="0.0025"/>
+		<property name="lacunarity" value="1.5"/>
+	</module>
+	<module name="ctn03_heightCtrl" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="ctn03_heightCtrlBone"/>
+		<property name="frequency" value="0.002"/>
+		<property name="power" value="100"/>
+		<property name="roughness" value="4"/>
+	</module>
+	<module name="ctn03_moduleCtrlBone" type="Voronoi" seed_additive="2">
+		<property name="frequency" value="0.016"/>
+		<property name="displacement" value="1"/>
+		<property name="distanceEnabled" value="false"/>
+	</module>
+	<module name="ctn03_moduleCtrl" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="ctn03_moduleCtrlBone"/>
+		<property name="frequency" value="0.002"/>
+		<property name="power" value="20"/>
+		<property name="roughness" value="3"/>
+	</module>
+
+	<module name="ctn03_normBtm" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="val_plnBtm"/>
+		<property name="sourceModule2" value="val_plnCtr"/>
+		<property name="bounds" value="-0.5, 1000"/>
+		<property name="edgeFalloff" value="0.34"/>
+	</module>
+	<module name="ctn03_norm" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="ctn03_normBtm"/>
+		<property name="sourceModule2" value="val_plnRof"/>
+		<property name="bounds" value="0.5, 1000"/>
+		<property name="edgeFalloff" value="0.34"/>
+	</module>
+
+	<module name="ctn03_abrpBtm" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="val_plnBtm"/>
+		<property name="sourceModule2" value="val_plnCtr"/>
+		<property name="bounds" value="-0.45, 1000"/>
+		<property name="edgeFalloff" value="0.08"/>
+	</module>
+	<module name="ctn03_abrp" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="ctn03_abrpBtm"/>
+		<property name="sourceModule2" value="val_plnRof"/>
+		<property name="bounds" value="0.45, 1000"/>
+		<property name="edgeFalloff" value="0.08"/>
+	</module>
+
+	<module name="ctn03_terrBtm" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="val_plnBtm"/>
+		<property name="sourceModule2" value="val_plnLow"/>
+		<property name="bounds" value="-0.76, 1000"/>
+		<property name="edgeFalloff" value="0.08"/>
+	</module>
+	<module name="ctn03_terrCtr" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="ctn03_terrBtm"/>
+		<property name="sourceModule2" value="val_plnCtr"/>
+		<property name="bounds" value="-0.28, 1000"/>
+		<property name="edgeFalloff" value="0.11"/>
+	</module>
+	<module name="ctn03_terrHig" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="ctn03_terrCtr"/>
+		<property name="sourceModule2" value="val_plnHig"/>
+		<property name="bounds" value="0.28, 1000"/>
+		<property name="edgeFalloff" value="0.11"/>
+	</module>
+	<module name="ctn03_terr" type="Select">
+		<property name="controlModule" value="ctn03_heightCtrl"/>
+		<property name="sourceModule1" value="ctn03_terrHig"/>
+		<property name="sourceModule2" value="val_plnRof"/>
+		<property name="bounds" value="0.76, 1000"/>
+		<property name="edgeFalloff" value="0.08"/>
+	</module>
+
+	<module name="ctn03_moduleBlender1" type="Select">
+		<property name="controlModule" value="ctn03_moduleCtrl"/>
+		<property name="sourceModule1" value="ctn03_abrp"/>
+		<property name="sourceModule2" value="ctn03_norm"/>
+		<property name="bounds" value="-0.6, 1000"/>
+	</module>
+	<module name="ctn03_moduleBlenderOut" type="Select">
+		<property name="controlModule" value="ctn03_moduleCtrl"/>
+		<property name="sourceModule1" value="ctn03_moduleBlender1"/>
+		<property name="sourceModule2" value="ctn03_terr"/>
+		<property name="bounds" value="0.6, 1000"/>
+	</module>
+
+	<module name="ctn_modifierOutput" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="ctn03_moduleBlenderOut"/>
+		<property name="frequency" value="0.002"/>
+		<property name="power" value="0"/>
+		<property name="roughness" value="1"/>
+	</module>
+
+</append>
+</configs>
