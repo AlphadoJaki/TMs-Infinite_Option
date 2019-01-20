@@ -1,0 +1,51 @@
+<!--
+val_0
+val_p1
+val_m1
+val_baseInv
+val_wtr
+val_rivBtm
+val_ocnBtm
+val_mntHeight
+-->
+<configs>
+<append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
+	<!-- ctn02_ -->
+	<module name="ctn02_base" type="FastNoise" seed_additive="0">
+		<property name="frequency" value="0.0025"/>
+			<property name="lacunarity" value="1.5"/>
+		<property name="octaveCount" value="5"/>
+	</module>
+	<module name="ctn02_lowArea" type="Select">
+		<property name="controlModule" value="ctn02_base"/>
+		<property name="sourceModule1" value="val_plnBtm"/>
+		<property name="sourceModule2" value="val_plnLow"/>
+		<property name="bounds" value="-0.7, 1000"/>
+		<property name="edgeFalloff" value="0.09"/>
+	</module>
+	<module name="ctn02_highArea" type="Select">
+		<property name="controlModule" value="ctn02_base"/>
+		<property name="sourceModule1" value="ctn02_lowArea"/>
+		<property name="sourceModule2" value="val_plnRof"/>
+		<property name="bounds" value="0.5, 1000"/>
+		<property name="edgeFalloff" value="0.21"/>
+	</module>
+	<module name="ctn02_scale" type="ScaleOutput">
+		<property name="sourceModule" value="ctn02_highArea"/>
+		<property name="scale" value="1"/>
+	</module>
+	<module name="ctn02_frequency" type="ScaleInput">
+		<property name="sourceModule" value="ctn02_scale"/>
+		<property name="x" value="1"/>
+		<property name="z" value="1"/>
+		<property name="y" value="0"/>
+	</module>
+	<module name="ctn_modifierOutput" type="FastTurbulence" seed_additive="1">
+		<property name="sourceModule" value="ctn02_frequency"/>
+		<property name="frequency" value="0.002"/>
+		<property name="power" value="100"/>
+		<property name="roughness" value="4"/>
+	</module>
+
+</append>
+</configs>

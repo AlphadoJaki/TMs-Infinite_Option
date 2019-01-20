@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="TMs Continent modifier 02 : Simple continent" />
+		<Description value="Generate simple continent" />
+		<Author value="Alphado-Jaki" />
+		<Version value="1.0.0" />
+	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
+	</ModInfo>
+</xml>
+<!--
+<xml>
+	<ModInfo>
+		<Name value="地形MOD集 平野mod02 : シンプル" />
+		<Description value="シンプルな平野を生成します。" />
+		<Author value="Alphado-Jaki" />
+		<Version value="1.0.0" />
+	<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
+	</ModInfo>
+</xml>
+-->
