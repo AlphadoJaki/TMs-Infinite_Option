@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xml>
 	<ModInfo>
-		<Name value="TMs Biome modifier 01 : Latitude based biome" />
+		<Name value="TMs 710   (modifier) Latitude based biome" />
 		<Description value="*NOTE* 1 biome modifier only allowed. Set up world size in tms000Xcfg_0_basicSetups. Generate biome as latitude based bands. South-desert, North-snow, Mid-forest." />
 		<Author value="Alphado-Jaki" />
 		<Version value="1.0.0" />
