@@ -25,21 +25,25 @@ val_mntHeight
 		<property name="y" value="0"/>
 		<property name="z" value="1"/>
 	</module>
-	<module name="val_p0_35" type="Constant"><property name="constant" value="0.35"/></module>
+	<module name="val_p0_15" type="Constant"><property name="constant" value="0.15"/></module>
 	
 </insertBefore>
 
 <insertBefore xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrlSide']">
-	<module name="wtr01_riverSplitter" type="LargerOutput">
+	<module name="wtr01_riverSplitCtrl" type="LargerOutput">
 		<property name="sourceModule1" value="wav_z512"/>
 		<property name="sourceModule2" value="wav_x512"/>
 	</module>
-	<module name="wtr01_ctrl" type="Select">
+	<module name="wtr01_ctrlRiverSplit" type="Select">
 		<property name="sourceModule1" value="wtr01_ctrl_addonX"/>
-		<property name="sourceModule2" value="val_p0_35"/>
-		<property name="controlModule" value="wtr01_riverSplitter"/>
-		<property name="bounds" value="0.8, 100"/>
-		<property name="edgeFalloff" value="0.2"/>
+		<property name="sourceModule2" value="val_p0_15"/>
+		<property name="controlModule" value="wtr01_riverSplitCtrl"/>
+		<property name="bounds" value="0.9, 100"/>
+		<property name="edgeFalloff" value="0.1"/>
+	</module>
+	<module name="wtr01_ctrl" type="LargerOutput">
+		<property name="sourceModule1" value="wtr01_ctrl_addonX"/>
+		<property name="sourceModule2" value="wtr01_ctrlRiverSplit"/>
 	</module>
 </insertBefore>
 
