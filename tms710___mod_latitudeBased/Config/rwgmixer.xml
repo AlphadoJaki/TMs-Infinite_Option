@@ -1,16 +1,4 @@
-<!--
-val_0
-val_p1
-val_m1
-val_baseInv
-val_wtr
-val_rivBtm
-val_ocnBtm
-val_mntHeight
-
-320~worldsize-320
--->
-<configs>
+<configs><!-- bio01_ -->
 <append xpath="/*/biome_generators/*[@name='vanillaSmall']|/*/trash">
 		<module name="val_desert_perc" type="ScaleOutput">
 			<property name="sourceModule" value="val_worldSafeSize"/>
@@ -102,6 +90,9 @@ val_mntHeight
 			<property name="biomemap4.Range" value="-5,10"/>
 		</module>
 
+		<output module="biomeOutput"/>
+</append>
+</configs>
 <!--  Biome Mapping (Smaller number wins larger number)
 
 -5  -0.5     0.5 1.5 2.5           3.5  5.5  6   6.5       10
@@ -110,6 +101,49 @@ val_mntHeight
 
 -->
 
-		<output module="biomeOutput"/>
-</append>
-</configs>
+<!--
+val_0
+val_p1
+val_m1
+val_worldSize
+val_worldSizeInv
+val_worldSizeRecip
+val_worldSizeHalf
+val_worldSizeHalfInv
+val_worldSizeHalfRecip
+val_worldSafeSize
+val_worldSafeSizeInv
+val_worldSafeSizeRecip
+val_worldSafeSizeHalf
+val_worldSafeSizeHalfInv
+val_worldSafeSizeHalfRecip
+val_worldSafeLower
+val_worldSafeUpper
+dist_southWestBase
+dist_southWest
+x
+z
+dist_center
+checker
+sgn_x
+sgn_z
+val_baseCfg
+val_baseShrunk
+val_baseInv
+val_wtrCfg
+val_wtrShrunk
+val_wtrAdder
+val_rivBtm
+val_ocnBtm
+val_mntHeightCfg
+val_mntHeightShrunk
+val_mntHeightBase
+val_plnBtm
+val_plnLow
+val_plnCtr
+val_plnHig
+val_plnRof
+val_rivSide
+val_canyonBtm
+ftr_ctrl
+-->

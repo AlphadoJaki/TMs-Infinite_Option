@@ -1,16 +1,6 @@
-<!--
-val_0
-val_p1
-val_m1
-val_baseInv
-val_wtr
-val_rivBtm
-val_ocnBtm
-val_mntHeight
--->
-<configs>
+<configs><!-- pln01_ -->
 <append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
-	<!-- pln01_ -->
+	
 	<module name="pln01_base" type="FastNoise" seed_additive="0">
 		<property name="frequency" value="0.04"/>
 		<property name="lacunarity" value="1.6"/>
@@ -23,8 +13,6 @@ val_mntHeight
 	</module>
 	<module name="pln01_terrace" type="Terrace">
 		<property name="sourceModule" value="pln01_inter"/>
-	<!--<property name="controlPoints" value="2.0, 23.0, 44.0, 65.0, 86.0, 107.0"/>-->
-		<!-- 2 or more controlPoints -->
 	</module>
 	<module name="pln01_frequency" type="ScaleInput">
 		<property name="sourceModule" value="pln01_terrace"/>
@@ -47,3 +35,49 @@ val_mntHeight
 
 </append>
 </configs>
+<!--
+val_0
+val_p1
+val_m1
+val_worldSize
+val_worldSizeInv
+val_worldSizeRecip
+val_worldSizeHalf
+val_worldSizeHalfInv
+val_worldSizeHalfRecip
+val_worldSafeSize
+val_worldSafeSizeInv
+val_worldSafeSizeRecip
+val_worldSafeSizeHalf
+val_worldSafeSizeHalfInv
+val_worldSafeSizeHalfRecip
+val_worldSafeLower
+val_worldSafeUpper
+dist_southWestBase
+dist_southWest
+x
+z
+dist_center
+checker
+sgn_x
+sgn_z
+val_baseCfg
+val_baseShrunk
+val_baseInv
+val_wtrCfg
+val_wtrShrunk
+val_wtrAdder
+val_rivBtm
+val_ocnBtm
+val_mntHeightCfg
+val_mntHeightShrunk
+val_mntHeightBase
+val_plnBtm
+val_plnLow
+val_plnCtr
+val_plnHig
+val_plnRof
+val_rivSide
+val_canyonBtm
+ftr_ctrl
+-->
