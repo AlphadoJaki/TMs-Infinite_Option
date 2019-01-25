@@ -1,0 +1,21 @@
+<configs>
+<!--
+			Size flat area between each peak
+			0	= = 0.5 = 	1	= = = 1.5 = = 	2
+Less.				Default.			More.
+Mountain is more	Enough low area		Much more low area
+ridgy without low	let roads go		enough to let not
+area to let road	through between		only road but hub
+go through.			mountains.			can grow.
+
+					山の間の平地部の広さ
+			0	= = 0.5 = 	1	= = = 1.5 = = 	2
+少なめ				デフォルト				多め
+山はもっと稜線が発達し、	十分な平地ができ、道は		もっと平地部を増やし、
+道が通れる平地部が減り		山の間を通り抜けることが		道だけでなく、街の成長も
+ます。					できます。				促進します。
+-->
+<set xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='val_ftr01_marginCfg']/*/@value|/*/trash">
+1
+</set>
+</configs>
