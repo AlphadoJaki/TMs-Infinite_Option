@@ -89,10 +89,12 @@ val_mntHeight
 		<property name="sourceModule" value="ftr01_ridgeClamped"/>
 		<property name="exponent" value="1.3"/>
 	</module>
-	<module name="ftr01_mountain" type="Blend">
+	<module name="ftr01_mountain" type="Select">
 		<property name="controlModule" value="ftr01_bonePlusFractal"/>
 		<property name="sourceModule1" value="val_m1"/>
 		<property name="sourceModule2" value="ftr01_ridgeFinal"/>
+		<property name="bounds" value="0.001,10000"/>
+		<property name="edgeFalloff" value="0.999"/>
 	</module>
 	<module name="ftr01_mountainScaled" type="ScaleBiasOutput">
 		<property name="sourceModule" value="ftr01_mountain"/>
