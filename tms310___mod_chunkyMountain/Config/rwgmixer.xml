@@ -12,7 +12,7 @@ val_mntHeight
 <append xpath="/*/terrain_generators/*[@name='vanilla']|/*/trash">
 	<!-- ftr01_ -->
 	<module name="ftr01_bone" type="RidgedMultifractal" seed_additive="0">
-		<property name="frequency" value="0.0006"/>
+		<property name="frequency" value="0.0007"/>
 		<property name="octaveCount" value="1"/>
 	</module>
 	<module name="ftr01_frequency" type="ScaleInput">
