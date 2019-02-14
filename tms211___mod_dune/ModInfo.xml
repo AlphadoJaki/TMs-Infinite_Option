@@ -4,7 +4,7 @@
 		<Name value="TMs 211   (modifier) Dune plain" />
 		<Description value="Generate plain as dune. Best view on desert." />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.1.1" />
+		<Version value="1.1.2" />
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
 	</ModInfo>
 </xml>
@@ -14,7 +14,7 @@
 		<Name value="地形MOD集 丘mod02 : 砂丘" />
 		<Description value="丘を砂丘として生成します。砂漠で映えます。" />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.0.0" />
+		<Version value="1.1.2" />
 		<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
 	</ModInfo>
 </xml>

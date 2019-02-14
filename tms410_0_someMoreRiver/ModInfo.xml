@@ -4,7 +4,7 @@
 		<Name value="TMs 410 1 (addon) Some more river" />
 		<Description value="DEPENDENCY *tms410 simpleRiver* Increase spawn rate of river" />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.1.1" />
+		<Version value="1.1.2" />
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
 	</ModInfo>
 </xml>
@@ -14,7 +14,7 @@
 		<Name value="地形MOD集 水場mod01拡張 1 : 川を増やす" />
 		<Description value="前提MOD *水場mod01* 川の生成頻度を増加します。" />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.0.0" />
+		<Version value="1.1.2" />
 		<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
 	</ModInfo>
 </xml>
