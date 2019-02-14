@@ -19,7 +19,7 @@
 	
 </insertBefore>
 
-<insertBefore xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrlSide']">
+<insertBefore xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrl']">
 	<module name="wtr01_riverSplitCtrl" type="LargerOutput">
 		<property name="sourceModule1" value="wav_z512"/>
 		<property name="sourceModule2" value="wav_x512"/>
@@ -31,13 +31,13 @@
 		<property name="bounds" value="0.9, 100"/>
 		<property name="edgeFalloff" value="0.1"/>
 	</module>
-	<module name="wtr01_ctrl" type="LargerOutput">
+	<module name="wtr01_ctrlSide" type="LargerOutput">
 		<property name="sourceModule1" value="wtr01_ctrl_addonX"/>
 		<property name="sourceModule2" value="wtr01_ctrlRiverSplit"/>
 	</module>
 </insertBefore>
 
-<set xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrl'][1]/@name|/*/trash">
+<set xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrlSide'][1]/@name|/*/trash">
 wtr01_ctrl_addonX</set>
 </configs>
 <!--

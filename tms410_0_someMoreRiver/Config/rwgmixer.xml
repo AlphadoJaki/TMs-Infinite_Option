@@ -1,5 +1,5 @@
 <configs><!-- wtr01_1 -->
-<insertBefore xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrlSide']">
+<insertBefore xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrl']">
 	<module name="wtr01_1_ctrlBone" type="FastNoise" seed_additive="0">
 		<property name="frequency" value="0.00025"/>
 		<property name="lacunarity" value="1.7"/>
@@ -23,7 +23,7 @@
 		<property name="sourceModule" value="wtr01_ctrl_addon1"/>
 	</module>
 	
-	<module name="wtr01_ctrl" type="Select">
+	<module name="wtr01_ctrlSide" type="Select">
 		<property name="sourceModule1" value="wtr01_ctrl_addon1"/>
 		<property name="sourceModule2" value="val_0"/>
 		<property name="controlModule" value="wtr01_1_ctrl"/>
@@ -33,7 +33,7 @@
 	
 </insertBefore>
 
-<set xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrl'][1]/@name|/*/trash">
+<set xpath="/*/terrain_generators/*[@name='vanilla']/*[@name='wtr01_ctrlSide'][1]/@name|/*/trash">
 wtr01_ctrl_addon1</set>
 </configs>
 <!--

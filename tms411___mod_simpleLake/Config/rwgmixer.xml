@@ -20,7 +20,7 @@
 	<module name="wtr02_lake" type="ScaleBiasOutput">
 		<property name="sourceModule" value="wtr02_lakeDetail"/>
 		<property name="scale" value="0.25"/>
-		<property name="bias" value="0"/>
+		<property name="bias" value="0.1"/>
 	</module>
 	<module name="wtr02_pondBone" type="FastNoise" seed_additive="3">
 		<property name="frequency" value="0.021"/>
@@ -40,28 +40,33 @@
 	<module name="wtr02_pond" type="ScaleBiasOutput">
 		<property name="sourceModule" value="wtr02_pondSmooth"/>
 		<property name="scale" value="0.15"/>
-		<property name="bias" value="-0.3"/>
+		<property name="bias" value="0"/>
 	</module>
 	<module name="wtr02_lakePond" type="Select">
 		<property name="controlModule" value="wtr02_lake"/>
 		<property name="sourceModule1" value="wtr02_pond"/>
 		<property name="sourceModule2" value="wtr02_lake"/>
-		<property name="bounds" value="0,1000"/>
-		<property name="edgeFalloff" value="0.5"/>
+		<property name="bounds" value="0.1,1000"/>
+		<property name="edgeFalloff" value="0.05"/>
 	</module>
 	<module name="wtr02_ctrlNerferBone" type="FastNoise" seed_additive="5">
 		<property name="frequency" value="0.006"/>
 		<property name="lacunarity" value="1.6"/>
 		<property name="octaveCount" value="6"/>
 	</module>
-	<module name="wtr02_ctrlNerfer" type="ScaleBiasOutput">
+	<module name="wtr02_ctrlNerfer" type="FastTurbulence" seed_additive="6">
 		<property name="sourceModule" value="wtr02_ctrlNerferBone"/>
-		<property name="scale" value="0.55"/>
-		<property name="bias" value="0.75"/>
+		<property name="frequency" value="0.019"/>
+		<property name="power" value="20"/>
+		<property name="roughness" value="2"/>
 	</module>
-	<module name="wtr02_ctrl" type="Add">
+	<module name="wtr02_val_out" type="Constant"><property name="constant" value="0.55"/></module>
+	<module name="wtr02_ctrl" type="Select">
+		<property name="controlModule" value="wtr02_ctrlNerfer"/>
 		<property name="sourceModule1" value="wtr02_lakePond"/>
-		<property name="sourceModule2" value="wtr02_ctrlNerfer"/>
+		<property name="sourceModule2" value="wtr02_val_out"/><!--val_p1-->
+		<property name="bounds" value="-0.5,1000"/>
+		<property name="edgeFalloff" value="0.3"/>
 	</module>
 
 	<module name="ftr_nerfed" type="Select">
@@ -81,36 +86,28 @@
 
 	<module name="ctn_nerfer" type="Select">
 		<property name="controlModule" value="wtr02_ctrl"/>
-		<property name="sourceModule1" value="wtr_modifierOutput"/>
-		<property name="sourceModule2" value="val_plnBtm"/>
-		<property name="bounds" value="-100,0.27"/>
-		<property name="edgeFalloff" value="0.18"/>
-	</module>
-	<module name="ctn_nerfed" type="SmallerOutput">
-		<property name="sourceModule1" value="wtr_modifierOutput"/>
-		<property name="sourceModule2" value="ctn_nerfer"/>
-	</module>
-	<module name="ctn_wtrSideNerfer" type="Select">
-		<property name="controlModule" value="wtr02_ctrl"/>
-		<property name="sourceModule1" value="ctn_nerfed"/>
-		<property name="sourceModule2" value="val_rivSide"/>
-		<property name="bounds" value="-100,0.1"/>
-		<property name="edgeFalloff" value="0.05"/>
-	</module>
-	<module name="ctn_wtrSide" type="SmallerOutput">
-		<property name="sourceModule1" value="ctn_wtrSideNerfer"/>
-		<property name="sourceModule2" value="ctn_nerfed"/>
-	</module>
-	<module name="ctn_wtr" type="Select">
-		<property name="controlModule" value="wtr02_ctrl"/>
-		<property name="sourceModule1" value="ctn_wtrSide"/>
+		<property name="sourceModule1" value="val_rivSide"/>
 		<property name="sourceModule2" value="val_rivBtm"/>
 		<property name="bounds" value="-100,0.02"/>
 		<property name="edgeFalloff" value="0.02"/>
 	</module>
-	<module name="wtr_modifierOutput" type="SmallerOutput">
-		<property name="sourceModule1" value="ctn_wtr"/>
-		<property name="sourceModule2" value="ctn_wtrSide"/>
+	<module name="ctn_wtrSideNerfer" type="Select">
+		<property name="controlModule" value="wtr02_ctrl"/>
+		<property name="sourceModule1" value="val_plnBtm"/>
+		<property name="sourceModule2" value="ctn_nerfer"/>
+		<property name="bounds" value="-100,0.08"/>
+		<property name="edgeFalloff" value="0.04"/>
+	</module>
+	<module name="ctn_wtrAndWtr" type="SmallerOutput">
+		<property name="sourceModule1" value="ctn_wtrSideNerfer"/>
+		<property name="sourceModule2" value="wtr_modifierOutput"/>
+	</module>
+	<module name="wtr_modifierOutput" type="Select">
+		<property name="controlModule" value="wtr02_ctrl"/>
+		<property name="sourceModule1" value="wtr_modifierOutput"/>
+		<property name="sourceModule2" value="ctn_wtrAndWtr"/>
+		<property name="bounds" value="-100,0.33"/>
+		<property name="edgeFalloff" value="0.21"/>
 	</module>
 
 </append>
