@@ -4,7 +4,7 @@
 		<Name value="TMs 310   (modifier) Chunky mountain feature" />
 		<Description value="Generate feature as chunky mountain. No ridge but steep. Easy to detour but hard to climb." />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.1.2" />
+		<Version value="1.1.3" />
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
 	</ModInfo>
 </xml>
@@ -14,7 +14,7 @@
 		<Name value="地形MOD集 特徴mod01 : ボコボコの山" />
 		<Description value="特徴を山として生成します。稜線はなく、急です。迂回しやすい形ですが、登るのは難しいです。" />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.1.2" />
+		<Version value="1.1.3" />
 		<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
 	</ModInfo>
 </xml>

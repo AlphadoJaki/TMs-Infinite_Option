@@ -4,7 +4,7 @@
 		<Name value="TMs 112   (modifier) Mixed continent" />
 		<Description value="Generate continent as mixed, much varied one." />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.1.2" />
+		<Version value="1.1.3" />
 	<!--<Link value="https://7daystodie.com/forums/showthread.php?100968"/>-->
 	</ModInfo>
 </xml>
@@ -14,7 +14,7 @@
 		<Name value="地形MOD集 平野mod03 : 混ぜこぜ" />
 		<Description value="平野を色々混ざった変化にとんだものとして生成します。" />
 		<Author value="Alphado-Jaki" />
-		<Version value="1.1.2" />
+		<Version value="1.1.3" />
 	<Link value="https://zawazawa.jp/sdtd_mod/topic/18"/>
 	</ModInfo>
 </xml>
