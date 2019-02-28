@@ -3,7 +3,7 @@
 	<module name="pln02_bone" type="Voronoi" seed_additive="0">
 		<property name="frequency" value="0.012"/>
 		<property name="displacement" value="0"/>
-		<property name="distanceEnabled" value="true"/>
+		<property name="distanceEnabled" value="True"/>
 	</module>
 	<module name="pln02_duneReg" type="ScaleBiasOutput">
 		<property name="sourceModule" value="pln02_bone"/>

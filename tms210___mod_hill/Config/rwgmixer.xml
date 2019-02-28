@@ -13,6 +13,7 @@
 	</module>
 	<module name="pln01_terrace" type="Terrace">
 		<property name="sourceModule" value="pln01_inter"/>
+		<property name="controlPoints" value="2.0, 23.0, 44.0, 65.0, 86.0, 107.0"/>
 	</module>
 	<module name="pln01_frequency" type="ScaleInput">
 		<property name="sourceModule" value="pln01_terrace"/>
